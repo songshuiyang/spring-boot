@@ -4,13 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
-import org.springframework.web.WebApplicationInitializer;
 
 /**
  *
  */
 @SpringBootApplication
-public class Application extends SpringBootServletInitializer implements WebApplicationInitializer{
+public class Application  extends SpringBootServletInitializer {
 
     /**
      * 配置 Spring Mvc

@@ -1,7 +1,5 @@
 package com.ecut.web;
 
-import com.ecut.domain.User;
-import com.ecut.entity.LoginCommand;
 import com.ecut.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -9,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author songshuiyang
@@ -34,31 +31,13 @@ public class LoginController {
     public ModelAndView  loginPage(){
         System.out.println("*****************sdf");
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("msg",hello);
-        modelAndView.setViewName("login");
+        modelAndView.addObject("msg","songshuiyang");
+        modelAndView.setViewName("index");
         return modelAndView;
     }
-    @RequestMapping(value = "/index")
-    public String index(){
-        return "login";
+    @RequestMapping(value = {"/list"}) // 可以配置多个映射路径
+    public String  index(){
+        System.out.println("*****************list");
+        return "index";
     }
-
-
-    @RequestMapping(value = "loginCheck")
-    public ModelAndView loginCheck(HttpServletRequest httpServletRequest,LoginCommand loginCommand){
-        boolean isValidUser = userService.hasMatchUser(loginCommand.getUserName(),loginCommand.getPassword());
-        if(isValidUser){
-            User user = userService.findUserByName(loginCommand.getUserName());
-            userService.loginSuccess(user);
-            user.setLastIp(httpServletRequest.getLocalAddr());
-            userService.loginSuccess(user);
-            httpServletRequest.getSession().setAttribute("user",user);
-            return new ModelAndView("loginSuccess");
-        }else{
-            return new ModelAndView("login", "error", "用户名或密码错误。");
-        }
-    }
-
-
-
 }
