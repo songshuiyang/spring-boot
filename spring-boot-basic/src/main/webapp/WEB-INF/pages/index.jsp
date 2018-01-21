@@ -7,6 +7,6 @@
     <title>Insert title here</title>
 </head>
 <body>
-hello ${msg} wer werfwer
+hello ${msg} wer werfwer ${home}
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.ecut.core.config;
+package com.ecut.core.config.web;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

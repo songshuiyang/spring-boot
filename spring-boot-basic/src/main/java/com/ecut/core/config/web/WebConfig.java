@@ -1,4 +1,4 @@
-package com.ecut.core.config;
+package com.ecut.core.config.web;
 
 import com.ecut.core.interceptor.RequestHandlerIntercepor;
 import org.springframework.context.annotation.Bean;

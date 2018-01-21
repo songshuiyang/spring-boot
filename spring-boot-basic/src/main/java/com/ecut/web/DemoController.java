@@ -58,4 +58,14 @@ public class DemoController {
     public String string(){
        return "string";
     }
+
+    /**
+     * 测试异常处理
+     * @return
+     */
+    @RequestMapping(value = {"/exception"})
+    public void exception(){
+        throw new NullPointerException("参数错误");
+
+    }
 }
