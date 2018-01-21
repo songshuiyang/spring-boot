@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -15,7 +17,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.ecut")
-public class WebConfig {
+public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver internalResourceViewResolver() {
         InternalResourceViewResolver  viewResolver = new InternalResourceViewResolver();
@@ -23,5 +25,15 @@ public class WebConfig {
         viewResolver.setSuffix(".jsp");
         viewResolver.setViewClass(JstlView.class);
         return  viewResolver;
+    }
+
+    /**
+     * 添加静态资源映射
+     * @param registry
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");
+        registry.addResourceHandler("/assert/**").addResourceLocations("/WEB-INF/assert/");
     }
 }
