@@ -1,9 +1,11 @@
 package com.ecut.core.config;
 
+import com.ecut.core.interceptor.RequestHandlerIntercepor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -36,4 +38,22 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");
         registry.addResourceHandler("/assert/**").addResourceLocations("/WEB-INF/assert/");
     }
+
+    /**
+     * 自定义拦截器
+     * @return
+     */
+    @Bean
+    public RequestHandlerIntercepor requestHandlerIntercepor() {
+        return new RequestHandlerIntercepor();
+    }
+    /**
+     * 添加自定义拦截器
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(requestHandlerIntercepor());
+    }
+
 }
