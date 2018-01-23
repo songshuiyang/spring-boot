@@ -2,14 +2,19 @@ package com.ecut.web;
 
 import com.ecut.domain.User;
 import com.ecut.service.UserService;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author songshuiyang
@@ -67,5 +72,21 @@ public class DemoController {
     public void exception(){
         throw new NullPointerException("参数错误");
 
+    }
+
+    /**
+     * 测试文件上传
+     * @param file
+     * @return
+     */
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    public @ResponseBody String upload(MultipartFile file) {
+        try {
+            FileUtils.writeByteArrayToFile(new File("D:/upload/"+file.getOriginalFilename()),file.getBytes());
+            return "ok";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "wrong";
+        }
     }
 }
