@@ -15,6 +15,7 @@
 	</parent>
 
 	<modules>
+		<module>spring-boot-api-limit</module>
 		<module>spring-boot-demo</module>
         <module>spring-boot-sharding-sphere</module>
 		<module>spring-boot-common</module>
@@ -42,6 +43,10 @@
 			<version>1.2.58</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 
 	</dependencies>
 
