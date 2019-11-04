@@ -21,10 +21,10 @@ public class UserController {
     private RedisTemplate redisTemplate;
 
     /**
-     * 10 秒中，可以访问5次
+     * 5秒中，可以访问3次
      * @return
      */
-    @ApiLimit(key = "test", time = 10, count = 5)
+    @ApiLimit(key = "test", time = 5, count = 3)
     @GetMapping("/test")
     public String luaLimiter() {
         // 简单测试方法

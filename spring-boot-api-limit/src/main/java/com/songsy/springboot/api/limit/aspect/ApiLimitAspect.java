@@ -45,19 +45,21 @@ public class ApiLimitAspect {
         ApiLimit apiLimit = method.getAnnotation(ApiLimit.class);
         if (apiLimit != null) {
             HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
-            String ip = IpUtils.getIpAdrress(request);
-            String redisKey = ip + "-" + targetClass.getName() + "- " + method.getName() + "-" + apiLimit.key();
-            List<String> keys = Collections.singletonList(redisKey);
+            String ipAddress = IpUtils.getIpAdrress(request);
+
+            String string = ipAddress + "-" + targetClass.getName() + "- " + method.getName() + "-" + apiLimit.key();
+            List<String> keys = Collections.singletonList(string);
             Number number = redisTemplate.execute(redisLuaScript, keys, apiLimit.count(), apiLimit.time());
 
-            if (number != null && number.intValue() != 0 && number.intValue() > apiLimit.count()) {
-                String errorMessage = redisKey + "已经到设置限流次数";
-                log.error(errorMessage);
-                throw new RuntimeException(errorMessage);
-            } else {
-                log.info("限流时间段内访问第{}次, 达到{}次数限流", number.toString(), apiLimit.count());
+            if (number != null && number.intValue() != 0 && number.intValue() <= apiLimit.count()) {
+                log.info("限流时间段内访问第：{} 次", number.toString());
+                return joinPoint.proceed();
             }
+
+        } else {
+            return joinPoint.proceed();
         }
-        return joinPoint.proceed();
+        log.error("已经到设置限流次数");
+        throw new RuntimeException("已经到设置限流次数");
     }
 }
