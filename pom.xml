@@ -21,6 +21,7 @@
 		<module>spring-boot-common</module>
 		<module>spring-boot-copy</module>
 		<module>spring-boot-mail</module>
+		<module>spring-boot-rabbitmq</module>
 	</modules>
 
 	<!-- 子模块默认继承下面这些依赖-->

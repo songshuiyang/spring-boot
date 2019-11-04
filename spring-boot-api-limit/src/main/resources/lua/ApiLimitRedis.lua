@@ -10,7 +10,7 @@ local current = tonumber(redis.call('get', key) or "0")
 --如果超出限流大小
 if current + 1 > limit then
   return 0
-else  --请求数+1，并设置2秒过期
+else  --请求数+1，并设置过期时间  在expire_time时间内可以访问多少次
    redis.call("INCRBY", key,"1")
    redis.call("expire", key,expire_time)
    return current + 1
