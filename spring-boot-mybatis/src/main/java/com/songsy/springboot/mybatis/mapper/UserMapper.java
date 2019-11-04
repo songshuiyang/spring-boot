@@ -1,7 +1,7 @@
-package com.songsy.springboot.common.mapper;
+package com.songsy.springboot.mybatis.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.songsy.springboot.common.entity.User;
+import com.songsy.springboot.mybatis.entity.UserDO;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
  * @author songsy
  * @date 2019/11/1 9:55
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<UserDO> {
 
     @Update("update user set name = #{name} where id = #{id}")
     int updateUser(@Param("name") String name, @Param("id") int id);
@@ -20,6 +20,6 @@ public interface UserMapper extends BaseMapper<User> {
     int deleteUser(int id);
 
     @Select("select id, name from user where id = #{id}")
-    User findUser(@Param("id") int id);
+    UserDO findUser(@Param("id") int id);
 
 }

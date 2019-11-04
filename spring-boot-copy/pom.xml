@@ -4,7 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+    <groupId>com.songsy.springboot</groupId>
     <artifactId>spring-boot-copy</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
 
     <parent>
         <artifactId>spring-boot-all</artifactId>
@@ -25,7 +29,7 @@
 
         <dependency>
             <groupId>com.songsy.springboot</groupId>
-            <artifactId>spring-boot-common</artifactId>
+            <artifactId>spring-boot-mybatis</artifactId>
         </dependency>
     </dependencies>
 

@@ -2,15 +2,18 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <groupId>com.songsy.springboot</groupId>
+    <artifactId>spring-boot-sharding-sphere</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
     <parent>
         <artifactId>spring-boot-all</artifactId>
         <groupId>com.songsy</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>spring-boot-sharding-sphere</artifactId>
-    <packaging>jar</packaging>
 
     <name>spring-boot-sharding-sphere</name>
 
@@ -38,7 +41,7 @@
 
         <dependency>
             <groupId>com.songsy.springboot</groupId>
-            <artifactId>spring-boot-common</artifactId>
+            <artifactId>spring-boot-mybatis</artifactId>
         </dependency>
     </dependencies>
 

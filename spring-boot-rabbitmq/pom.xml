@@ -4,13 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.songsy.springboot</groupId>
     <artifactId>spring-boot-rabbitmq</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1-SNAPSHOT</version>
 
     <parent>
         <artifactId>spring-boot-all</artifactId>
         <groupId>com.songsy</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
+
+    <properties>
+        <!-- The main class to start by executing java -jar -->
+        <start-class>com.songsy.springboot.rabbitmq.RabbitMqApplication</start-class>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -23,7 +33,11 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
-    </dependencies>
 
+        <dependency>
+            <groupId>com.songsy.springboot</groupId>
+            <artifactId>spring-boot-mybatis</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

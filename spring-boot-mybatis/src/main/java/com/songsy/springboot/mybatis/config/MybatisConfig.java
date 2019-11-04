@@ -1,4 +1,4 @@
-package com.songsy.springboot.common.config;
+package com.songsy.springboot.mybatis.config;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;

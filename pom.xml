@@ -16,12 +16,13 @@
 
 	<modules>
 		<module>spring-boot-api-limit</module>
-		<module>spring-boot-demo</module>
-        <module>spring-boot-sharding-sphere</module>
 		<module>spring-boot-common</module>
 		<module>spring-boot-copy</module>
+		<module>spring-boot-demo</module>
 		<module>spring-boot-mail</module>
+		<module>spring-boot-mybatis</module>
 		<module>spring-boot-rabbitmq</module>
+		<module>spring-boot-sharding-sphere</module>
 	</modules>
 
 	<!-- 子模块默认继承下面这些依赖-->
@@ -38,11 +39,11 @@
 			<optional>true</optional>
 		</dependency>
 
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.58</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.alibaba</groupId>-->
+<!--			<artifactId>fastjson</artifactId>-->
+<!--			<version>1.2.58</version>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -77,8 +78,14 @@
 
 			<dependency>
 				<groupId>com.songsy.springboot</groupId>
+				<artifactId>spring-boot-mybatis</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.songsy.springboot</groupId>
 				<artifactId>spring-boot-common</artifactId>
-				<version>1.0-SNAPSHOT</version>
+				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

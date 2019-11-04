@@ -1,10 +1,12 @@
-package com.songsy.springboot.common.entity;
+package com.songsy.springboot.mybatis.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * @author songsy
@@ -14,7 +16,9 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("user")
-public class User extends Model<User> {
+public class UserDO extends Model<UserDO>  implements Serializable {
+
+    private static final long serialVersionUID=1L;
 
     /**
      * 主键Id

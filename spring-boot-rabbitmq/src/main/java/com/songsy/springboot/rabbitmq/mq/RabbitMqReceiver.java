@@ -18,7 +18,7 @@ public class RabbitMqReceiver {
      * Direct 交换机模式
      */
     @RabbitListener(queues = RabbitMqConfig.QUEUE)
-    public void receive(String message){
+    public void receive(String message) {
         logger.info("receive message" + message);
     }
 
@@ -26,12 +26,12 @@ public class RabbitMqReceiver {
      * Topic 交换机模式
      */
     @RabbitListener(queues = RabbitMqConfig.TOPIC_QUEUE1)
-    public void receiveTopic1(String message){
+    public void receiveTopic1(String message) {
         logger.info("receive topic queue1 message: " + message);
     }
 
     @RabbitListener(queues = RabbitMqConfig.TOPIC_QUEUE2)
-    public void receiveTopic2(String message){
+    public void receiveTopic2(String message) {
         logger.info("receive topic queue2 message: " + message);
     }
 
@@ -39,12 +39,12 @@ public class RabbitMqReceiver {
      * Fanout模式 交换机Exchange
      */
     @RabbitListener(queues = RabbitMqConfig.FANOUT_QUEUE1)
-    public void receiveFanout1(String message){
+    public void receiveFanout1(String message) {
         logger.info("receive fanout queue1 message: " + message);
     }
 
     @RabbitListener(queues = RabbitMqConfig.FANOUT_QUEUE2)
-    public void receiveFanout2(String message){
+    public void receiveFanout2(String message) {
         logger.info("receive fanout queue2 message: " + message);
     }
 
@@ -52,7 +52,7 @@ public class RabbitMqReceiver {
      * Header模式 交换机Exchange
      */
     @RabbitListener(queues = RabbitMqConfig.HEADERS_QUEUE)
-    public void receiveFanout2(byte[] message){
+    public void receiveFanout2(byte[] message) {
         logger.info("receive headers queue message: " + new String(message));
     }
 

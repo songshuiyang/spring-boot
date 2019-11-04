@@ -1,5 +1,6 @@
 package com.songsy.springboot.rabbitmq.test;
 
+import com.songsy.springboot.rabbitmq.RabbitMqApplication;
 import com.songsy.springboot.rabbitmq.mq.RabbitMqSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2019/11/4 16:18
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = RabbitMqApplication.class)
 public class MqTest {
 
     @Autowired

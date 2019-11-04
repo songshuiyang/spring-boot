@@ -1,7 +1,7 @@
 package com.songsy.springboot.sharding.test;
 
-import com.songsy.springboot.common.entity.User;
-import com.songsy.springboot.common.mapper.UserMapper;
+import com.songsy.springboot.mybatis.entity.UserDO;
+import com.songsy.springboot.mybatis.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @Slf4j
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-public class UserMapperTest {
+public class UserDOMapperTest {
 
     @Autowired
     private UserMapper userMapper;
@@ -27,11 +27,11 @@ public class UserMapperTest {
     @Test
     public void test0 () {
         for (int i= 0 ; i< 20; i++) {
-            User user = new User();
-            user.setName("");
-            user.setId(i);
-            user.setAge(i + 10);
-            userMapper.insert(user);
+            UserDO userDO = new UserDO();
+            userDO.setName("");
+            userDO.setId(i);
+            userDO.setAge(i + 10);
+            userMapper.insert(userDO);
         }
     }
     /**
