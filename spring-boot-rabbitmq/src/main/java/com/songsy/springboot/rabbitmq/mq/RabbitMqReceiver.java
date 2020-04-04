@@ -20,6 +20,11 @@ public class RabbitMqReceiver {
     @RabbitListener(queues = RabbitMqConfig.QUEUE)
     public void receive(String message) {
         logger.info("receive message" + message);
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

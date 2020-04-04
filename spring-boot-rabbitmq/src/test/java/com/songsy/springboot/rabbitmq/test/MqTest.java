@@ -21,7 +21,9 @@ public class MqTest {
 
     @Test
     public void mq() {
-        mqSender.send("你好 Direct 交换机模式");
+        for (int i =0 ; i < 100; i ++) {
+            mqSender.send("你好 Direct 交换机模式");
+        }
     }
 
     @Test
