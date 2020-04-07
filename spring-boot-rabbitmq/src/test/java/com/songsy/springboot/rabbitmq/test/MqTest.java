@@ -1,7 +1,7 @@
 package com.songsy.springboot.rabbitmq.test;
 
 import com.songsy.springboot.rabbitmq.RabbitMqApplication;
-import com.songsy.springboot.rabbitmq.mq.RabbitMqSender;
+import com.songsy.springboot.rabbitmq.mq.v1.RabbitMqSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

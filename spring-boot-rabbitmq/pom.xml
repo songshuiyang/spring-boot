@@ -38,6 +38,12 @@
             <groupId>com.songsy.springboot</groupId>
             <artifactId>spring-boot-mybatis</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.60</version>
+        </dependency>
     </dependencies>
 
 </project>
