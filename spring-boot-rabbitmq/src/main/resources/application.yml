@@ -1,0 +1,21 @@
+server:
+  port: 9003
+spring:
+  rabbitmq:
+    host: 111.230.226.158
+    port: 5672 # 客户界面端：111.230.226.158:15672
+    username: songsy
+    password: songsy
+    virtual-host: /
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+#        default-requeue-rejected: false
+#        retry:
+#          enabled: true
+#          max-attempts: 3
+#          initial-interval: 6000
+#          max-interval: 6000
+#        prefetch: 20

@@ -39,11 +39,10 @@ public class MqReceiver {
             key = "routing_key_submit_order"))
     public void rabbitMessageProcess(Channel channel, Message message, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
         String messageString = new String(message.getBody());
-        log.info("收到mq消息:{}", messageString);
+        log.info("收到mq消息:{} deliveryTag:{} ", messageString, deliveryTag);
         OrderMO orderMO = JSON.parseObject(message.getBody(), OrderMO.class);
         try {
             // 提交订单的处理 模拟异常场景
-            log.info("提交订单处理{}" , orderMO.getOrderNo());
             if ("1".equals(orderMO.getOrderNo())) {
                 throw new IllegalArgumentException("参数异常");
             } else if ("2".equals(orderMO.getOrderNo())) {
