@@ -1,8 +1,7 @@
 package com.songsy.springboot.rabbitmq.test.v2;
 
-import com.alibaba.fastjson.JSON;
-import com.songsy.springboot.rabbitmq.RabbitMqApplication;
-import com.songsy.springboot.rabbitmq.entity.OrderMO;
+import com.songsy.springboot.rabbitmq.RabbitMqApplicationPort9011;
+import com.songsy.springboot.rabbitmq.common.OrderMO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.core.RabbitMessagingTemplate;
@@ -15,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2020/4/7 11:10
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = RabbitMqApplication.class)
+@SpringBootTest(classes = RabbitMqApplicationPort9011.class)
 public class MqSenderTest {
 
     @Autowired
@@ -59,14 +58,14 @@ public class MqSenderTest {
      */
     @Test
     public void test3() {
-        for (int i = 10; i < 20; i ++) {
+        for (int i = 10; i < 200; i ++) {
             OrderMO orderMO = new OrderMO();
             orderMO.setOrderNo(String.valueOf(i));
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             // String payload = JSON.toJSONString(orderMO);
             rabbitMessagingTemplate.convertAndSend("exchange_submit_order", "routing_key_submit_order", orderMO);
         }

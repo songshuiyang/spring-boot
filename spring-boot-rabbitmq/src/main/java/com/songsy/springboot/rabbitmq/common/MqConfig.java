@@ -1,4 +1,4 @@
-package com.songsy.springboot.rabbitmq.mq.v2;
+package com.songsy.springboot.rabbitmq.common;
 
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;

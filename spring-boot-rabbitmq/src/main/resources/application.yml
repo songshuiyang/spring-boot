@@ -8,7 +8,7 @@ spring:
     password: songsy
     virtual-host: /
     publisher-confirms: true
-    publisher-returns: true
+#    publisher-returns: true
     listener:
       simple:
         acknowledge-mode: manual

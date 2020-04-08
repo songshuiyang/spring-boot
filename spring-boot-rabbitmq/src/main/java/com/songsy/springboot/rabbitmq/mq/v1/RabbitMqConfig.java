@@ -14,18 +14,18 @@ import java.util.Map;
 @Configuration
 public class RabbitMqConfig {
     // 测试队列
-    static final String QUEUE = "queue";
+    public static final String QUEUE = "queue";
     // Topic 交换机模式队列
-    static final String TOPIC_QUEUE1 = "topic.queue1";
-    static final String TOPIC_QUEUE2 = "topic.queue2";
-    static final String TOPIC_EXCHANGE = "topicExchange";
+    public static final String TOPIC_QUEUE1 = "topic.queue1";
+    public static final String TOPIC_QUEUE2 = "topic.queue2";
+    public static final String TOPIC_EXCHANGE = "topicExchange";
     // Fanout模式队列
-    static final String FANOUT_QUEUE1 = "fanout.queue1";
-    static final String FANOUT_QUEUE2 = "fanout.queue2";
-    static final String FANOUT_EXCHANGE = "fanoutExchange";
+    public static final String FANOUT_QUEUE1 = "fanout.queue1";
+    public static final String FANOUT_QUEUE2 = "fanout.queue2";
+    public static final String FANOUT_EXCHANGE = "fanoutExchange";
     // Header模式队列
-    static final String HEADERS_QUEUE = "headers.queue";
-    static final String HEADERS_EXCHANGE = "headersExchange";
+    public static final String HEADERS_QUEUE = "headers.queue";
+    public static final String HEADERS_EXCHANGE = "headersExchange";
 
 
     /**

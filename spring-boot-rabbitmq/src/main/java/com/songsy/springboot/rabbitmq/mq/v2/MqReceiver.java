@@ -2,7 +2,7 @@ package com.songsy.springboot.rabbitmq.mq.v2;
 
 import com.alibaba.fastjson.JSON;
 import com.rabbitmq.client.Channel;
-import com.songsy.springboot.rabbitmq.entity.OrderMO;
+import com.songsy.springboot.rabbitmq.common.OrderMO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.ExchangeTypes;
@@ -19,7 +19,6 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 
 /**
  * @author songsy

@@ -1,4 +1,4 @@
-package com.songsy.springboot.rabbitmq.entity;
+package com.songsy.springboot.rabbitmq.common;
 
 import lombok.Data;
 
