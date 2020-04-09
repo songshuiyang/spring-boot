@@ -12,10 +12,10 @@ spring:
     listener:
       simple:
         acknowledge-mode: manual
-#        default-requeue-rejected: false
-#        retry:
-#          enabled: true
-#          max-attempts: 3
-#          initial-interval: 6000
-#          max-interval: 6000
-#        prefetch: 20
+        default-requeue-rejected: false
+        retry: # 消费端方法如果抛异常了并没有catch之后会每隔6秒重试
+          enabled: true
+          max-attempts: 3
+          initial-interval: 6000
+          max-interval: 6000
+        prefetch: 20

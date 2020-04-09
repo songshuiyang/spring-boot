@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RabbitMqApplicationPort9011.class)
-public class MqSenderTest {
+public class MqDirectSenderTest {
 
     @Autowired
     private RabbitMessagingTemplate rabbitMessagingTemplate;
@@ -38,7 +38,7 @@ public class MqSenderTest {
     public void test1() {
         OrderMO orderMO = new OrderMO();
         orderMO.setOrderNo("0");
-        rabbitMessagingTemplate.convertAndSend("exchange_submit_order", "错误routingKey", orderMO);
+        rabbitMessagingTemplate.convertAndSend("错误exchange_submit_order", "错误routingKey", orderMO);
     }
 
 
@@ -52,6 +52,8 @@ public class MqSenderTest {
         // String payload = JSON.toJSONString(orderMO);
         rabbitMessagingTemplate.convertAndSend("exchange_submit_order", "routing_key_submit_order", orderMO);
     }
+
+
 
     /**
      * 连续发10条消息
@@ -71,7 +73,27 @@ public class MqSenderTest {
         }
     }
 
+    /**
+     * 模拟消费端抛异常，消息会进重试队列的情况
+     */
+    @Test
+    public void test4() {
+        OrderMO orderMO = new OrderMO();
+        orderMO.setOrderNo("1");
+        // String payload = JSON.toJSONString(orderMO);
+        rabbitMessagingTemplate.convertAndSend("exchange_submit_order", "routing_key_submit_order", orderMO);
+    }
 
+    /**
+     * 模拟消费端抛异常没有try catch，所以会一直刷
+     */
+    @Test
+    public void test5() {
+        OrderMO orderMO = new OrderMO();
+        orderMO.setOrderNo("1");
+        // String payload = JSON.toJSONString(orderMO);
+        rabbitMessagingTemplate.convertAndSend("exchange_submit_order", "routing_key_submit_order_exception", orderMO);
+    }
 
 
 }
