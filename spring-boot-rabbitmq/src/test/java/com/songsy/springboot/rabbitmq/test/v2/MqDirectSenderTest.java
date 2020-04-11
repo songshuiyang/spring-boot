@@ -5,9 +5,12 @@ import com.songsy.springboot.rabbitmq.common.OrderMO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.core.RabbitMessagingTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import sun.plugin2.message.Message;
 
 /**
  * @author songsy
@@ -20,13 +23,17 @@ public class MqDirectSenderTest {
     @Autowired
     private RabbitMessagingTemplate rabbitMessagingTemplate;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+
     /**
      * 给错误交换器发消息，不会报错
      */
     @Test
     public void test0() {
         OrderMO orderMO = new OrderMO();
-        orderMO.setOrderNo("0");
+        orderMO.setOrderNo("错误交换器");
         rabbitMessagingTemplate.convertAndSend("无名交换器", "queue_submit_order", orderMO);
 
     }
@@ -37,8 +44,8 @@ public class MqDirectSenderTest {
     @Test
     public void test1() {
         OrderMO orderMO = new OrderMO();
-        orderMO.setOrderNo("0");
-        rabbitMessagingTemplate.convertAndSend("错误exchange_submit_order", "错误routingKey", orderMO);
+        orderMO.setOrderNo("给错误的路由键发消息");
+        rabbitTemplate.convertAndSend("错误exchange_submit_order", "错误routingKey", orderMO);
     }
 
 

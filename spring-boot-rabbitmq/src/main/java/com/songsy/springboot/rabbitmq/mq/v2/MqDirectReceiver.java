@@ -43,10 +43,11 @@ public class MqDirectReceiver {
             value = @Queue(value = "queue_submit_order", durable = "true"),
             exchange = @Exchange(value = "exchange_submit_order", type = ExchangeTypes.DIRECT, durable = "true"),
             key = "routing_key_submit_order"))
-    public void rabbitMessageProcess1(Channel channel, Message message, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
+    public void rabbitMessageProcess1(Channel channel, Message message, OrderMO orderMO, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
         String messageString = new String(message.getBody());
         log.info("收到提交订单mq消息:{} deliveryTag:{} ", messageString, deliveryTag);
-        OrderMO orderMO = JSON.parseObject(message.getBody(), OrderMO.class);
+        // 添加Jackson2JsonMessageConverter bean后直接在方法参数上可以实现反序列化操作，而不用下面这种方式
+        // OrderMO orderMO = JSON.parseObject(message.getBody(), OrderMO.class);
         try {
             // 提交订单的处理 模拟异常场景
             if ("1".equals(orderMO.getOrderNo())) {
@@ -67,8 +68,8 @@ public class MqDirectReceiver {
             // 转发到重试队列 后续处理
             rabbitMessagingTemplate.convertAndSend("exchange_submit_order","routing_key_submit_order_retry", orderMO);
 
-            //channel.basicReject(deliveryTag,false); // 直接销毁
-            channel.basicNack(deliveryTag,false,false); // Nack
+            // channel.basicReject(deliveryTag,false); // 消息拒绝
+            channel.basicNack(deliveryTag,false,false); // 和basicReject效果一样不过可以批量拒绝消息
         }
     }
 
@@ -83,10 +84,9 @@ public class MqDirectReceiver {
             value = @Queue(value = "queue_submit_order_exception", durable = "true"),
             exchange = @Exchange(value = "exchange_submit_order", type = ExchangeTypes.DIRECT, durable = "true"),
             key = "routing_key_submit_order_exception"))
-    public void rabbitMessageProcess2(Channel channel, Message message, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
+    public void rabbitMessageProcess2(Channel channel, Message message, OrderMO orderMO,  @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
         String messageString = new String(message.getBody());
         log.info("收到订单异常mq消息:{} deliveryTag:{} ", messageString, deliveryTag);
-        OrderMO orderMO = JSON.parseObject(message.getBody(), OrderMO.class);
         int result = 12 / 0;
         // 消息手动确认
         channel.basicAck(deliveryTag, false);
@@ -103,10 +103,9 @@ public class MqDirectReceiver {
             value = @Queue(value = "queue_submit_order_retry", durable = "true"),
             exchange = @Exchange(value = "exchange_submit_order", type = ExchangeTypes.DIRECT, durable = "true"),
             key = "routing_key_submit_order_retry"))
-    public void rabbitMessageProcess3(Channel channel, Message message, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
+    public void rabbitMessageProcess3(Channel channel, Message message, OrderMO orderMO,  @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
         String messageString = new String(message.getBody());
         log.info("收到订单重试mq消息:{} deliveryTag:{} ", messageString, deliveryTag);
-        OrderMO orderMO = JSON.parseObject(message.getBody(), OrderMO.class);
         try {
             MessageProperties messageProperties = message.getMessageProperties();
             // 消息手动确认
