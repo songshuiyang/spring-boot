@@ -21,26 +21,26 @@ public class RabbitTemplateConfig {
     private Logger log = LoggerFactory.getLogger(RabbitTemplateConfig.class);
 
     /**
-     * 获取到没有被正确路由到合适队列的消息
+     * confrim回调能检测到消息是否到达 broker，通过ack变量来判断，但不能保证消息准确投递到目标 queue
+     *
      */
     final RabbitTemplate.ConfirmCallback confirmCallback= new RabbitTemplate.ConfirmCallback() {
-
         @Override
         public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-            System.out.println("收到correlationData: " + correlationData);
-            System.out.println("ack: " + ack);
+            log.info("ConfirmCallback >> correlationData:{}, ack:{}, cause:{}", correlationData , ack, cause);
             if(!ack){
-                System.out.println("异常处理....");
+                log.info("异常处理....");
             }
         }
-
     };
 
+    /**
+     * return回调能检测到消息是否到达 queue，如果没有到达指定队列就会触发下面的逻辑
+     */
     final RabbitTemplate.ReturnCallback returnCallback = new RabbitTemplate.ReturnCallback() {
         @Override
         public void returnedMessage(org.springframework.amqp.core.Message message, int replyCode, String replyText, String exchange, String routingKey) {
-            System.out.println("收到return exchange: " + exchange + ", routingKey: "
-                    + routingKey + ", replyCode: " + replyCode + ", replyText: " + replyText);
+            log.info("ReturnCallback >> return exchange: {}, routingKey: {}, replyCode: {}, replyText: {}", exchange, routingKey, replyCode, replyText);
         }
     };
 
@@ -48,6 +48,7 @@ public class RabbitTemplateConfig {
     @Bean(name = "rabbitTemplate")
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
+        // 开启 mandatory
         template.setMandatory(true);
         template.setConfirmCallback(confirmCallback);
         template.setReturnCallback(returnCallback);

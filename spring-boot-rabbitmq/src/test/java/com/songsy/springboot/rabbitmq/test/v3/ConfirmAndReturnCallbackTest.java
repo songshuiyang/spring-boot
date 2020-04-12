@@ -27,7 +27,7 @@ public class ConfirmAndReturnCallbackTest {
     public void test1() {
         OrderMO orderMO = new OrderMO();
         orderMO.setOrderNo("给错误的交换器及路由键发消息");
-        rabbitTemplate.convertAndSend("错误exchange_submit_order", "错误queue_submit_order", orderMO);
+        rabbitTemplate.convertAndSend("错误exchange_submit_order", "错误routing_key_submit_order", orderMO);
     }
 
 
@@ -38,7 +38,7 @@ public class ConfirmAndReturnCallbackTest {
     public void test2() {
         OrderMO orderMO = new OrderMO();
         orderMO.setOrderNo("给错误的交换器发消息");
-        rabbitTemplate.convertAndSend("错误exchange_submit_order", "queue_submit_order", orderMO);
+        rabbitTemplate.convertAndSend("错误exchange_submit_order", "routing_key_submit_order", orderMO);
     }
 
     /**
@@ -48,7 +48,7 @@ public class ConfirmAndReturnCallbackTest {
     public void test3() {
         OrderMO orderMO = new OrderMO();
         orderMO.setOrderNo("给错误的路由键发消息");
-        rabbitTemplate.convertAndSend("exchange_submit_order", "错误queue_submit_order", orderMO);
+        rabbitTemplate.convertAndSend("exchange_submit_order", "错误routing_key_submit_order", orderMO);
     }
 
     /**
@@ -58,7 +58,7 @@ public class ConfirmAndReturnCallbackTest {
     public void test4() {
         OrderMO orderMO = new OrderMO();
         orderMO.setOrderNo("给正确的路由键发消息");
-        rabbitTemplate.convertAndSend("exchange_submit_order", "queue_submit_order", orderMO);
+        rabbitTemplate.convertAndSend("exchange_submit_order", "routing_key_submit_order", orderMO);
     }
 
 }
