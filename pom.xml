@@ -23,6 +23,7 @@
 		<module>spring-boot-mybatis</module>
 		<module>spring-boot-rabbitmq</module>
 		<module>spring-boot-redis</module>
+		<module>spring-boot-rocketmq</module>
 		<module>spring-boot-sharding-sphere</module>
 	</modules>
 

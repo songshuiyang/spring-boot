@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.songsy.springboot</groupId>
-    <artifactId>spring-boot-copy</artifactId>
+    <artifactId>spring-boot-rocketmq</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -23,9 +23,23 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>com.songsy.springboot</groupId>-->
+<!--            <artifactId>spring-boot-mybatis</artifactId>-->
+<!--        </dependency>-->
+
+        <!--RocketMQ-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.rocketmq</groupId>-->
+<!--            <artifactId>rocketmq-client</artifactId>-->
+<!--            <version>4.3.0</version>-->
+<!--        </dependency>-->
+
+        <!--add dependency in pom.xml-->
         <dependency>
-            <groupId>com.songsy.springboot</groupId>
-            <artifactId>spring-boot-mybatis</artifactId>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <version>2.1.0</version>
         </dependency>
     </dependencies>
 
