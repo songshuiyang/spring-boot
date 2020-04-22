@@ -1,6 +1,7 @@
 package com.songsy.springboot.rocketmq.test.v1;
 
 import com.songsy.springboot.rocketmq.v1.RocketMqProducer;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class SpringRocketTest {
 
+    /**
+     * 注入rocketMQ的模板
+     */
     @Autowired
-    private RocketMqProducer rocketMqProducer;
+    private RocketMQTemplate rocketMQTemplate;
 
     @Test
     public void testSendMessage() {
-        rocketMqProducer.sendMsg("my-topic","为什么不打印");
+        rocketMQTemplate.convertAndSend("my-topic","为什么不打印");
+    }
+
+    @Test
+    public void testSendMessage1() {
+        rocketMQTemplate.convertAndSend("my-topic-1","给错的topic发消息");
     }
 
 }
