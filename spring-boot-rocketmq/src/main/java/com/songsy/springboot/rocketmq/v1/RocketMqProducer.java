@@ -27,5 +27,4 @@ public class RocketMqProducer {
         this.rocketMQTemplate.convertAndSend(topic, msg);
     }
 
-
 }
