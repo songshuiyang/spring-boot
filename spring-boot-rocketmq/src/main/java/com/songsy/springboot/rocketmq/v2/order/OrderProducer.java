@@ -29,6 +29,7 @@ public class OrderProducer implements RocketMQLocalTransactionListener {
     @Override
     public RocketMQLocalTransactionState executeLocalTransaction(org.springframework.messaging.Message message, Object o) {
         OrderBO orderBO = JSONObject.parseObject( (byte [])message.getPayload() , OrderBO.class);
+        // 省略检查商品库存的
         try {
             if (orderBO.getType() == 2) {
                 throw new Exception("订单提交异常");
